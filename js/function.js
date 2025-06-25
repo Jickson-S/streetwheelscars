@@ -349,18 +349,30 @@
 		var phone = $("#phone").val();
 		var message = $("#msg").val();
 
-		$.ajax({
-			type: "POST",
-			url: "form-process.html",
-			data: "fname=" + fname + "&lname=" + lname + "&email=" + email + "&phone=" + phone + "&message=" + message,
-			success : function(text){
-				if (text == "success"){
-					formSuccess();
-				} else {
-					submitMSG(false,text);
-				}
-			}
-		});
+		var name=fname+" "+lname;
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "form-process.html",
+		// 	data: "fname=" + fname + "&lname=" + lname + "&email=" + email + "&phone=" + phone + "&message=" + message,
+		// 	success : function(text){
+		// 		if (text == "success"){
+		// 			formSuccess();
+		// 		} else {
+		// 			submitMSG(false,text);
+		// 		}
+		// 	}
+		// });
+		emailjs.send("service_zrlwvrr", "template_31g7o9r", {
+		name: name,
+		email: email,
+		phone: phone,
+		message: message,
+	})
+	.then(function(response) {
+		formSuccess();
+	}, function(error) {
+		submitMSG(false, "Something went wrong. Please try again.");
+	});
 	}
 
 	function formSuccess(){
