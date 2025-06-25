@@ -5104,7 +5104,7 @@ header.main-header .header-sticky.active{
 	}
 
 	.perfect-fleet-item .image-box img{
-		max-width: 200px;
+		/* max-width: 200px; */
 	}
 
 	.perfect-fleet-title{
